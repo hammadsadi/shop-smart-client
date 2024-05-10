@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
+import QueriesCard from "../../components/QueriesCard";
 
 const Home = () => {
   const bannerInfo = [
@@ -60,12 +61,19 @@ const Home = () => {
       </div>
 
       {/* Recent Queries */}
-      <section className="container mx-auto md:px-0 px-4">
+      <section className="container mx-auto md:px-0 px-4 my-10 md:my-20">
         <div>
           <SectionTitle
             title={"Recent Queries"}
             subtitle={"You See The Recent Added Queries Here."}
           />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <QueriesCard />
+          <QueriesCard />
+          <QueriesCard />
+          <QueriesCard />
+          <QueriesCard />
         </div>
       </section>
     </div>
