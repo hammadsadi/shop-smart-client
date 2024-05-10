@@ -1,6 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toastAlert } from "../../utils/toastAlert";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  // Handle User Create
+  const handleUserCreate = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // Validate
+    if (!email || !password) {
+      return toastAlert("All Fields Are Required", "error");
+    }
+    // Login User
+    signIn(email, password)
+      .then((res) => {
+        toastAlert("Login Success", "success");
+        navigate("/");
+      })
+      .catch((err) => {
+        return toastAlert("Invalid Email and Password", "error");
+      });
+
+    console.log({ email, password });
+    e.target.reset();
+  };
   return (
     <div className="flex justify-center items-center w-full h-screen">
       <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
@@ -58,7 +86,7 @@ const Login = () => {
           <p className="px-3 dark:text-gray-600">OR</p>
           <hr className="w-full dark:text-gray-600" />
         </div>
-        <form noValidate="" action="" className="space-y-8">
+        <form noValidate="" className="space-y-8" onSubmit={handleUserCreate}>
           <div className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
