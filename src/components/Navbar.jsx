@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toastAlert } from "../utils/toastAlert";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [theme, setTheme] = useState("light");
   // Handle Logout
   const handleLogout = () => {
     logOut()
@@ -14,6 +16,7 @@ const Navbar = () => {
         toastAlert(err.message, "error");
       });
   };
+
   let navItem = (
     <>
       <li>
@@ -50,6 +53,21 @@ const Navbar = () => {
       )}
     </>
   );
+
+  // Set Theme
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  // Handle Theme
+  const handleTheme = (e) => {
+    e.target.checked ? setTheme("dark") : setTheme("light");
+  };
+  console.log(theme);
   return (
     <div className="bg-color-secondary text-white">
       <div className="navbar container mx-auto md:px-0 px-4">
@@ -84,7 +102,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItem}</ul>
         </div>
         <div className="navbar-end space-x-4">
-          <label className="swap swap-rotate">
+          <label className="swap swap-rotate" onClick={handleTheme}>
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" />
 

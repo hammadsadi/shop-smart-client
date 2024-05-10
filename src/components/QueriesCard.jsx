@@ -1,6 +1,6 @@
 const QueriesCard = () => {
   return (
-    <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+    <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg dark:bg-gray-800">
       <div className="relative">
         <img
           alt=""
@@ -12,15 +12,15 @@ const QueriesCard = () => {
         </div>
       </div>
 
-      <div className="bg-white p-4 sm:p-6">
-        <h3 className="mt-0.5 text-xl md:text-2xl text-black font-bold">
+      <div className="bg-white dark:bg-gray-800 p-4 sm:p-6">
+        <h3 className="mt-0.5 text-xl md:text-2xl text-black font-bold dark:text-white">
           How to position your furniture
         </h3>
-        <h3 className="mt-0.5 text-base font-medium md:text-lg text-black ">
+        <h3 className="mt-0.5 text-base font-medium md:text-lg text-black dark:text-white">
           How to position your
         </h3>
 
-        <p className="mt-2 line-clamp-3 text-sm/relaxed text-color-overly">
+        <p className="mt-2 line-clamp-3 text-sm/relaxed text-color-overly dark:text-white">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
           dolores, possimus pariatur animi temporibus nesciunt praesentium
           dolore sed nulla ipsum eveniet corporis quidem, mollitia itaque minus
@@ -35,10 +35,12 @@ const QueriesCard = () => {
           className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
         />
         <div>
-          <h3 className="text-base font-semibold">Hammad Sadi</h3>
+          <h3 className="text-base font-semibold dark:text-white">
+            Hammad Sadi
+          </h3>
           <time
             dateTime="2022-10-10"
-            className="block text-xs text-color-overly"
+            className="block text-xs text-color-overly dark:text-white"
           >
             {" "}
             Post: 10th Oct 2022{" "}
