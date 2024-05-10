@@ -11,7 +11,7 @@ const Banner = () => {
           </h1>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link to="/login">
+            <Link to="/add-query">
               <button className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold ">
                 Add Query
               </button>

@@ -33,15 +33,15 @@ const SingleQueryCard = () => {
       <div className="flex gap-5 p-4 sm:p-6 justify-center">
         <button className="text-xl">
           {" "}
-          <FaRegEye />{" "}
+          <FaRegEye className="text-color-primary" />{" "}
         </button>
         <button className="text-lg">
           {" "}
-          <FaPenSquare />{" "}
+          <FaPenSquare className="text-color-primary" />{" "}
         </button>
         <button className="text-lg">
           {" "}
-          <FaTrashAlt />{" "}
+          <FaTrashAlt className="text-color-primary" />{" "}
         </button>
       </div>
     </article>
