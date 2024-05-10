@@ -91,7 +91,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-color-secondary rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-color-secondary rounded-box w-52 z-30"
             >
               {navItem}
             </ul>
@@ -127,7 +127,7 @@ const Navbar = () => {
           {user ? (
             <Link>
               <button
-                className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold"
+                className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold hidden md:block"
                 onClick={handleLogout}
               >
                 Logout
@@ -135,7 +135,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <Link to="/login">
-              <button className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold">
+              <button className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold hidden md:block">
                 Login
               </button>
             </Link>
