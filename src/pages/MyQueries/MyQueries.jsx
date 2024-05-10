@@ -1,5 +1,6 @@
 import Banner from "../../components/Banner";
 import SectionTitle from "../../components/SectionTitle";
+import SingleQueryCard from "../../components/SingleQueryCard";
 
 const MyQueries = () => {
   return (
@@ -15,7 +16,9 @@ const MyQueries = () => {
               subtitle={"You See The Recent Added Queries Here."}
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <SingleQueryCard />
+          </div>
         </div>
       </section>
     </div>
