@@ -68,8 +68,8 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="leroy@jenkins.com"
-                className="w-full px-3 py-2  rounded-md dark:border focus:outline-color-primary"
+                placeholder="example@com"
+                className="w-full px-3 py-2  rounded-md border focus:outline-color-primary"
               />
             </div>
             <div className="space-y-2">
@@ -83,7 +83,7 @@ const Login = () => {
                 name="password"
                 id="password"
                 placeholder="*****"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:outline-color-primary"
+                className="w-full px-3 py-2  rounded-md border focus:outline-color-primary"
               />
             </div>
           </div>
