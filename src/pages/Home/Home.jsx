@@ -15,7 +15,7 @@ import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
   const loadedQueries = useLoaderData();
-  console.log(loadedQueries);
+
   const bannerInfo = [
     {
       id: 1,

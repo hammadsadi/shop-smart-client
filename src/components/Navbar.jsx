@@ -67,7 +67,6 @@ const Navbar = () => {
   const handleTheme = (e) => {
     e.target.checked ? setTheme("dark") : setTheme("light");
   };
-  console.log(theme);
   return (
     <div className="bg-color-secondary text-white">
       <div className="navbar container mx-auto md:px-0 px-4">
