@@ -1,3 +1,6 @@
+import { FaRegCommentDots } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 const QueriesCard = () => {
   return (
     <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg dark:bg-gray-800">
@@ -28,23 +31,37 @@ const QueriesCard = () => {
           dignissimos. Molestias explicabo corporis voluptatem?
         </p>
       </div>
-      <div className="flex gap-2 p-4 sm:p-6">
-        <img
-          src="https://i1.sndcdn.com/avatars-jRXwcAeJYYa5np7a-EGDQqA-t500x500.jpg"
-          alt=""
-          className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
-        />
-        <div>
-          <h3 className="text-base font-semibold dark:text-white">
-            Hammad Sadi
-          </h3>
-          <time
-            dateTime="2022-10-10"
-            className="block text-xs text-color-overly dark:text-white"
+      <div className="flex justify-between items-center p-4 sm:p-6">
+        <div className="flex gap-2">
+          <img
+            src="https://i1.sndcdn.com/avatars-jRXwcAeJYYa5np7a-EGDQqA-t500x500.jpg"
+            alt=""
+            className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
+          />
+          <div>
+            <h3 className="text-base font-semibold dark:text-white">
+              Hammad Sadi
+            </h3>
+            <time
+              dateTime="2022-10-10"
+              className="block text-xs text-color-overly dark:text-white"
+            >
+              {" "}
+              Post: 10th Oct 2022{" "}
+            </time>
+          </div>
+        </div>
+        <div className="flex items-center gap-5">
+          <Link
+            to="/query-details/23"
+            className="bg-color-primary text-white text-sm px-3 py-2 rounded-md"
           >
+            Recommend
+          </Link>
+          <button className="flex items-center gap-2 dark:text-white">
             {" "}
-            Post: 10th Oct 2022{" "}
-          </time>
+            <FaRegCommentDots /> <small>122</small>{" "}
+          </button>
         </div>
       </div>
     </article>

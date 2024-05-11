@@ -4,7 +4,7 @@ const AddQueries = () => {
       <div className="flex justify-center items-center w-full py-5">
         <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-800 dark:text-gray-800">
           <h2 className="mb-3 text-3xl font-semibold text-center dark:text-white">
-            Login to your account
+            Create New Query
           </h2>
 
           <form noValidate="" className="space-y-8">
