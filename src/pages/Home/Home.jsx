@@ -1,5 +1,4 @@
 import Hero from "../../components/Hero";
-import { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,8 +11,11 @@ import "swiper/css/navigation";
 import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
 import QueriesCard from "../../components/QueriesCard";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
+  const loadedQueries = useLoaderData();
+  console.log(loadedQueries);
   const bannerInfo = [
     {
       id: 1,
@@ -70,11 +72,9 @@ const Home = () => {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
+            {loadedQueries.map((query) => (
+              <QueriesCard key={query._id} query={query} />
+            ))}
           </div>
         </div>
       </section>

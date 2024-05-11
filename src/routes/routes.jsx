@@ -19,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_BASE_URL}/queries`, {
+            credentials: "include",
+          }),
       },
       {
         path: "/queries",

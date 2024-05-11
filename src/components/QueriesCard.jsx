@@ -1,7 +1,7 @@
 import { FaRegCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const QueriesCard = () => {
+const QueriesCard = ({ query }) => {
   return (
     <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg dark:bg-gray-800">
       <div className="relative">

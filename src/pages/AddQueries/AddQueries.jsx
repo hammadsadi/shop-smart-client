@@ -1,4 +1,56 @@
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toastAlert } from "../../utils/toastAlert";
+
 const AddQueries = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  // handleCreateQuery
+  const handleCreateQuery = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const productName = form.productName.value;
+    const productBrand = form.productBrand.value;
+    const imageUrl = form.imageUrl.value;
+    const queryTitle = form.queryTitle.value;
+    const boycottingReason = form.boycottingReason.value;
+
+    // Validate
+    if (
+      !productName ||
+      !productBrand ||
+      !imageUrl ||
+      !queryTitle ||
+      !boycottingReason
+    ) {
+      return toastAlert("All Fields Are Required", "error");
+    }
+    const queryInfo = {
+      productName,
+      productBrand,
+      imageUrl,
+      queryTitle,
+      boycottingReason,
+      recommendationCount: 0,
+      user: {
+        name: user?.displayName,
+        email: user?.email,
+        photo: user?.photoURL,
+        date: new Date(),
+      },
+    };
+
+    // Create Query
+    try {
+      const { data } = await axiosSecure.post("/queries", queryInfo);
+      if (data.insertedId) {
+        toastAlert("Query Created Successful", "success");
+        e.target.reset();
+      }
+    } catch (error) {
+      return toastAlert(error.message, "success");
+    }
+  };
   return (
     <section className="dark:bg-gray-900">
       <div className="flex justify-center items-center w-full py-5">
@@ -7,7 +59,11 @@ const AddQueries = () => {
             Create New Query
           </h2>
 
-          <form noValidate="" className="space-y-8">
+          <form
+            noValidate=""
+            className="space-y-8"
+            onSubmit={handleCreateQuery}
+          >
             <div className="space-y-4">
               <div className="space-y-2">
                 <label
@@ -56,15 +112,15 @@ const AddQueries = () => {
               </div>
               <div className="space-y-2">
                 <label
-                  htmlFor="queryTItle"
+                  htmlFor="queryTitle"
                   className="block text-sm dark:text-white"
                 >
                   Query TItle
                 </label>
                 <input
                   type="text"
-                  name="queryTItle"
-                  id="queryTItle"
+                  name="queryTitle"
+                  id="queryTitle"
                   placeholder="Query TItle"
                   className="w-full px-3 py-2  rounded-md border focus:outline-none dark:bg-gray-900 dark:text-color-overly dark:border-gray-800 dark:focus:border-color-primary"
                 />
