@@ -72,7 +72,7 @@ const Home = () => {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {loadedQueries.map((query) => (
+            {loadedQueries.slice(0, 6).map((query) => (
               <QueriesCard key={query._id} query={query} />
             ))}
           </div>
