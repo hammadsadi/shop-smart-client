@@ -1,12 +1,12 @@
 import SectionTitle from "../../components/SectionTitle";
 
-const MyRecommendations = () => {
+const RecommendationsForMe = () => {
   return (
     <div>
       <section className="dark:bg-gray-900">
         <div className=" container mx-auto md:px-0 px-4 py-10 md:py-20">
           <div>
-            <SectionTitle title={"My Recommendation"} />
+            <SectionTitle title={"Recommendations For Me"} />
           </div>
           <div className="overflow-x-auto">
             <table className="table dark:text-white">
@@ -67,4 +67,4 @@ const MyRecommendations = () => {
   );
 };
 
-export default MyRecommendations;
+export default RecommendationsForMe;
