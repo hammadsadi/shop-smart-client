@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
-
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const RecommendationsForMe = () => {
+  const [userRecommendations, setUserRecommendations] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  useEffect(() => {
+    const getRecommendation = async () => {
+      const { data } = await axiosSecure.get(
+        `${import.meta.env.VITE_API_BASE_URL}/get-all-users-recommendations/${
+          user?.email
+        }`
+      );
+      setUserRecommendations(data);
+    };
+    getRecommendation();
+  }, [axiosSecure, user]);
+
+  console.log(userRecommendations);
   return (
     <div>
       <section className="dark:bg-gray-900">
@@ -21,42 +39,41 @@ const RecommendationsForMe = () => {
                       />
                     </label>
                   </th>
-                  <th>Photo & Title</th>
+                  <th>Photo & Query Title</th>
+                  <th>Product Name</th>
                   <th>Reason</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {/* row 1 */}
-                <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
+                {userRecommendations?.map((rec) => (
+                  <tr key={rec._id}>
+                    <th>
+                      <label>
+                        <input type="checkbox" className="checkbox" />
+                      </label>
+                    </th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img
+                              src={rec?.recommendedProductImage}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">
+                            {rec?.recommendationTitle.slice(0, 20)}...
+                          </div>
                         </div>
                       </div>
-                      <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>Zemlak, Daniel and Leannon</td>
-
-                  <th>
-                    <button className="btn btn-ghost btn-xs bg-red-700 text-white hover:bg-gray-800">
-                      details
-                    </button>
-                  </th>
-                </tr>
+                    </td>
+                    <td>{rec?.productName.slice(0, 20)}</td>
+                    <td>{rec?.recommendationReason.slice(0, 20)}...</td>
+                  </tr>
+                ))}
               </tbody>
               {/* foot */}
             </table>
