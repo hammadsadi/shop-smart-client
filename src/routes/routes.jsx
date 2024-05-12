@@ -38,10 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/query-details/:id",
         element: <QueryDetails />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
-            credentials: "include",
-          }),
+        // loader: ({ params }) =>
+        //   fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
+        //     credentials: "include",
+        //   }),
       },
       {
         path: "/my-recommendations",

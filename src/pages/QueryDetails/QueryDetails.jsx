@@ -1,15 +1,27 @@
 import { FaRegCommentDots } from "react-icons/fa";
 import Recommendation from "../../components/Recommendation";
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toastAlert } from "../../utils/toastAlert";
 import { useEffect, useState } from "react";
 const QueryDetails = () => {
-  const singleQuery = useLoaderData();
   const [userRecommendation, setUserRecommendation] = useState([]);
+  const [singleQuery, setSingleQuery] = useState({});
+  const { id } = useParams();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
+  // Get Single Query
+  useEffect(() => {
+    getSingleQuery();
+  }, [id]);
+  const getSingleQuery = async () => {
+    const { data } = await axiosSecure.get(
+      `${import.meta.env.VITE_API_BASE_URL}/queries/${id}`
+    );
+    setSingleQuery(data);
+  };
 
   // handleRecommendation
   const handleRecommendation = async (e) => {
@@ -41,7 +53,8 @@ const QueryDetails = () => {
       );
       if (data.insertedId) {
         toastAlert("Query Created Successful", "success");
-        // e.target.reset();
+        getSingleQuery();
+        e.target.reset();
       }
     } catch (error) {
       return toastAlert(error.message, "success");
@@ -85,20 +98,20 @@ const QueryDetails = () => {
           <div className="border-b pb-2 md:pb-5 flex gap-5 items-center">
             <div className="flex gap-2">
               <img
-                src={singleQuery?.user.photo}
+                src={singleQuery?.user?.photo}
                 alt=""
                 className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
               />
               <div>
                 <h3 className="text-base font-semibold dark:text-white">
-                  {singleQuery?.user.name}
+                  {singleQuery?.user?.name}
                 </h3>
                 <time
                   dateTime="2022-10-10"
                   className="block text-xs text-color-overly dark:text-white"
                 >
                   {" "}
-                  Post: {new Date(singleQuery?.user.date).toLocaleDateString()}
+                  Post: {new Date(singleQuery?.user?.date).toLocaleDateString()}
                 </time>
               </div>
             </div>

@@ -26,26 +26,26 @@ const QueriesCard = ({ query }) => {
         </h3>
 
         <p className="mt-2 line-clamp-3 text-sm/relaxed text-color-overly dark:text-white">
-          {query?.boycottingReason.slice(0, 150)}...
+          {query?.boycottingReason?.slice(0, 150)}...
         </p>
       </div>
       <div className="flex justify-between items-center p-4 sm:p-6">
         <div className="flex gap-2">
           <img
-            src={query?.user.photo}
+            src={query?.user?.photo}
             alt=""
             className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
           />
           <div>
             <h3 className="text-base font-semibold dark:text-white">
-              {query?.user.name}
+              {query?.user?.name}
             </h3>
             <time
               dateTime="2022-10-10"
               className="block text-xs text-color-overly dark:text-white"
             >
               {" "}
-              Post: {new Date(query?.user.date).toLocaleDateString()}
+              Post: {new Date(query?.user?.date).toLocaleDateString()}
             </time>
           </div>
         </div>
