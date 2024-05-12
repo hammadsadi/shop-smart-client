@@ -1,6 +1,9 @@
+import { useLoaderData } from "react-router-dom";
 import QueriesCard from "../../components/QueriesCard";
 
 const Queries = () => {
+  const loadedQueries = useLoaderData();
+  console.log(loadedQueries);
   return (
     <div>
       <section className=" dark:bg-gray-900">
@@ -12,11 +15,9 @@ const Queries = () => {
       />
     </div> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
-            <QueriesCard />
+            {loadedQueries.map((qr) => (
+              <QueriesCard key={qr._id} query={qr} />
+            ))}
           </div>
         </div>
       </section>

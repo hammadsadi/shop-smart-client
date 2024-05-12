@@ -32,13 +32,13 @@ const QueriesCard = ({ query }) => {
       <div className="flex justify-between items-center p-4 sm:p-6">
         <div className="flex gap-2">
           <img
-            src="https://i1.sndcdn.com/avatars-jRXwcAeJYYa5np7a-EGDQqA-t500x500.jpg"
+            src={query?.user.photo}
             alt=""
             className="w-8 h-8 items-center border-2 border-color-primary rounded-full"
           />
           <div>
             <h3 className="text-base font-semibold dark:text-white">
-              Hammad Sadi
+              {query?.user.name}
             </h3>
             <time
               dateTime="2022-10-10"

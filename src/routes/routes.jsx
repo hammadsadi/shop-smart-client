@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import Queries from "../pages/Queries/Queries";
 import QueryDetails from "../pages/QueryDetails/QueryDetails";
 import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
+import MyRecommendations from "../pages/MyRecommendations/MyRecommendations";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries />,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_API_BASE_URL}/queries`, {
+            credentials: "include",
+          }),
       },
       {
         path: "/query-details/:id",
@@ -36,6 +41,18 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
             credentials: "include",
           }),
+      },
+      {
+        path: "/my-recommendations",
+        element: (
+          <PrivateRoute>
+            <MyRecommendations />
+          </PrivateRoute>
+        ),
+        // loader: ({ params }) =>
+        //   fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
+        //     credentials: "include",
+        //   }),
       },
       {
         path: "/my-queries",
