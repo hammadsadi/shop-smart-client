@@ -1,26 +1,37 @@
-const Recommendation = () => {
+import PropTypes from "prop-types";
+const Recommendation = ({ recommendation }) => {
   return (
     <div>
-      <div className="flex gap-3 md:gap-6 items-center">
+      <div className="flex gap-3 md:gap-6 items-center border-b py-2 md:py-5">
         <img
-          src="https://i1.sndcdn.com/avatars-jRXwcAeJYYa5np7a-EGDQqA-t500x500.jpg"
+          src={recommendation?.recommendedProductImage}
           alt=""
           className="w-10 h-10 md:w-16 md:h-16 border-2 border-color-primary rounded-full"
         />
         <div className="">
-          <h2 className="font-bold text-lg md:text-xl dark:text-white">
-            Leroy Jenkins
-          </h2>
+          <div>
+            <h2 className="font-bold text-lg md:text-xl dark:text-white">
+              {recommendation?.recommendationTitle}
+            </h2>
+            <time
+              dateTime="2022-10-10"
+              className="block text-xs text-color-overly dark:text-white"
+            >
+              {" "}
+              Post: {new Date().toLocaleDateString()}
+            </time>
+          </div>
+
           <p className="text-color-overly dark:text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-            voluptates voluptatibus ut officia sunt exercitationem, esse debitis
-            unde? Iure, doloribus eaque. Natus maiores id facilis, architecto in
-            debitis? Sapiente, fuga?
+            {recommendation?.recommendationReason}
           </p>
         </div>
       </div>
     </div>
   );
+};
+Recommendation.propTypes = {
+  recommendation: PropTypes.object,
 };
 
 export default Recommendation;

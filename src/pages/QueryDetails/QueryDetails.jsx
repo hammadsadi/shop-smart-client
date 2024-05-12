@@ -1,9 +1,64 @@
 import { FaRegCommentDots } from "react-icons/fa";
 import Recommendation from "../../components/Recommendation";
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toastAlert } from "../../utils/toastAlert";
+import { useEffect, useState } from "react";
 const QueryDetails = () => {
   const singleQuery = useLoaderData();
-  console.log(singleQuery);
+  const [userRecommendation, setUserRecommendation] = useState([]);
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  // handleRecommendation
+  const handleRecommendation = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const recommendationTitle = form.recommendationTitle.value;
+    const recommendedProductName = form.recommendedProductName.value;
+    const recommendedProductImage = form.recommendedProductImage.value;
+    const recommendationReason = form.recommendationReason.value;
+    const recommendationInfo = {
+      recommendationTitle,
+      recommendedProductName,
+      recommendedProductImage,
+      recommendationReason,
+      queryId: singleQuery?._id,
+      queryTitle: singleQuery?.queryTitle,
+      productName: singleQuery?.productName,
+      userEmail: singleQuery?.user.email,
+      userName: singleQuery?.user.name,
+      recommenderEmail: user?.email,
+      recommenderName: user?.displayName,
+      date: new Date(),
+    };
+    // Create Recommendation
+    try {
+      const { data } = await axiosSecure.post(
+        "/recommendation",
+        recommendationInfo
+      );
+      if (data.insertedId) {
+        toastAlert("Query Created Successful", "success");
+        // e.target.reset();
+      }
+    } catch (error) {
+      return toastAlert(error.message, "success");
+    }
+  };
+
+  // Get Recommendations
+  useEffect(() => {
+    const getRecommendation = async () => {
+      const { data } = await axiosSecure.get(
+        `/recommendation/${singleQuery?._id}`
+      );
+      setUserRecommendation(data);
+    };
+    getRecommendation();
+  }, [axiosSecure, singleQuery]);
+  console.log(userRecommendation);
   return (
     <section className="dark:bg-gray-900">
       <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg dark:bg-gray-800">
@@ -70,7 +125,11 @@ const QueryDetails = () => {
                 Create New Query
               </h2> */}
 
-                <form noValidate="" className="space-y-8">
+                <form
+                  noValidate=""
+                  className="space-y-8"
+                  onSubmit={handleRecommendation}
+                >
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <input
@@ -115,7 +174,9 @@ const QueryDetails = () => {
               </div>
             </div>
             <div className="pt-2 md:pt-5">
-              <Recommendation />
+              {userRecommendation?.map((rec) => (
+                <Recommendation recommendation={rec} key={rec._id} />
+              ))}
             </div>
           </div>
         </div>
