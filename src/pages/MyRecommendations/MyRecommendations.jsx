@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import swal from "sweetalert";
 const MyRecommendations = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -17,7 +18,31 @@ const MyRecommendations = () => {
     getRecommendation();
   }, [axiosSecure, user]);
 
-  console.log(recommendations);
+  // Handle Delete Own Recommendation
+  const handleDeleteRecommendation = async (id, queryId) => {
+    swal({
+      title: "Are you sure?",
+      text: "Do You Want to Delete This Recommendation",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your Recommendation has been deleted!", {
+          icon: "success",
+        });
+        axiosSecure.delete(
+          `${
+            import.meta.env.VITE_API_BASE_URL
+          }/delete-recommendation/${id}?queryId=${queryId}`
+        );
+        const remainingRecomm = recommendations.filter((rec) => rec._id !== id);
+        setRecommendations(remainingRecomm);
+      } else {
+        swal("Your Recommendation is safe!");
+      }
+    });
+  };
   return (
     <div>
       <section className="dark:bg-gray-900">
@@ -72,7 +97,12 @@ const MyRecommendations = () => {
                     <td>{rec?.recommendationReason.slice(0, 20)}...</td>
 
                     <th>
-                      <button className="btn btn-ghost btn-xs bg-red-700 text-white hover:bg-gray-800">
+                      <button
+                        className="btn btn-ghost btn-xs bg-red-700 text-white hover:bg-gray-800"
+                        onClick={() =>
+                          handleDeleteRecommendation(rec._id, rec.queryId)
+                        }
+                      >
                         Delete
                       </button>
                     </th>
