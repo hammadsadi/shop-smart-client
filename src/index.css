@@ -11,3 +11,8 @@
 .swiper-button-next {
   color: #8364e2 !important;
 }
+.swal2-cancel,
+.swal2-cancel:hover {
+  background-color: red;
+  color: #fff;
+}

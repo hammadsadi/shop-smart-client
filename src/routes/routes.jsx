@@ -9,6 +9,7 @@ import AddQueries from "../pages/AddQueries/AddQueries";
 import PrivateRoute from "./PrivateRoute";
 import Queries from "../pages/Queries/Queries";
 import QueryDetails from "../pages/QueryDetails/QueryDetails";
+import UpdateQuery from "../pages/UpdateQuery/UpdateQuery";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,18 @@ const router = createBrowserRouter([
             <MyQueries />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/update-query/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateQuery />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
+            credentials: "include",
+          }),
       },
       {
         path: "/add-query",
