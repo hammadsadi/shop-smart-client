@@ -12,6 +12,7 @@ import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
 import QueriesCard from "../../components/QueriesCard";
 import { useLoaderData } from "react-router-dom";
+import CountInfo from "../../components/CountInfo";
 
 const Home = () => {
   const loadedQueries = useLoaderData();
@@ -76,6 +77,12 @@ const Home = () => {
               <QueriesCard key={query._id} query={query} />
             ))}
           </div>
+        </div>
+      </section>
+      {/* Count Up */}
+      <section className="dark:bg-gray-900">
+        <div className="pb-10 md:pb-20">
+          <CountInfo />
         </div>
       </section>
     </div>

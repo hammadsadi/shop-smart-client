@@ -1,8 +1,22 @@
-# React + Vite
+# SmartShop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [ Live Site URL](https://smart-shop-ca369.web.app/)
 
-Currently, two official plugins are available:
+Click here for the Live Site: [https://smart-shop-ca369.web.app/](https://smart-shop-ca369.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Website Features
+
+- Register User Using Email and Password
+- Login User Using Email and Password
+- Direct Sign In User Through Google Account
+- Protected Route
+- User Logout
+- Add Query
+- Delete Query
+- Update Query
+- Fully Responsive
+- Recommendation / Comment System
+
+# Category's name
+
+## Alternative Product Information System.

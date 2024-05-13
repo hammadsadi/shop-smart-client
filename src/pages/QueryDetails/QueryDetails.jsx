@@ -71,7 +71,7 @@ const QueryDetails = () => {
     };
     getRecommendation();
   }, [axiosSecure, singleQuery]);
-  console.log(userRecommendation);
+
   return (
     <section className="dark:bg-gray-900">
       <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg dark:bg-gray-800">
