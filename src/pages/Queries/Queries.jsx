@@ -1,19 +1,60 @@
 import { useLoaderData } from "react-router-dom";
 import QueriesCard from "../../components/QueriesCard";
-
+import { FaSearch } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Queries = () => {
-  const loadedQueries = useLoaderData();
-  console.log(loadedQueries);
+  // const loadedQueries = useLoaderData();
+  const [loadedQueries, setLoadedQueries] = useState([]);
+  const [search, setSearch] = useState("");
+  const axiosSecure = useAxiosSecure();
+  // Get Queries
+  useEffect(() => {
+    const getAllQueries = async () => {
+      const { data } = await axiosSecure.get(
+        `${import.meta.env.VITE_API_BASE_URL}/queries?search=${search}`
+      );
+      setLoadedQueries(data);
+    };
+    getAllQueries();
+  }, [search]);
+
+  // handleSearch
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
+    setSearch(searchText);
+  };
   return (
     <div>
       <section className=" dark:bg-gray-900">
         <div className="container mx-auto md:px-0 px-4 py-10 md:py-20">
-          {/* <div>
-      <SectionTitle
-        title={"Recent Queries"}
-        subtitle={"You See The Recent Added Queries Here."}
-      />
-    </div> */}
+          <div className="flex items-center py-5">
+            <div className="  max-w-md mx-auto gap-1">
+              <form onSubmit={handleSearch}>
+                <div className="flex items-center gap-1">
+                  <input
+                    type="search"
+                    name="search"
+                    id="productName"
+                    placeholder="Product Name"
+                    className="w-full px-3 py-2  rounded-md border focus:outline-none dark:bg-gray-900 dark:text-color-overly dark:border-gray-800 dark:focus:border-color-primary"
+                  />
+                  <button
+                    type="submit"
+                    className=" px-4 py-3 font-semibold rounded-md bg-color-primary text-white"
+                  >
+                    <FaSearch />
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div>
+              <select name="" id="">
+                <option value="">3 Colum</option>
+              </select>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {loadedQueries.map((qr) => (
               <QueriesCard key={qr._id} query={qr} />

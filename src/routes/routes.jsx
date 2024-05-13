@@ -30,18 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries />,
-        loader: () =>
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/queries`, {
-            credentials: "include",
-          }),
       },
       {
         path: "/query-details/:id",
         element: <QueryDetails />,
-        // loader: ({ params }) =>
-        //   fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
-        //     credentials: "include",
-        //   }),
       },
       {
         path: "/my-recommendations",
@@ -50,10 +42,6 @@ const router = createBrowserRouter([
             <MyRecommendations />
           </PrivateRoute>
         ),
-        // loader: ({ params }) =>
-        //   fetch(`${import.meta.env.VITE_API_BASE_URL}/queries/${params.id}`, {
-        //     credentials: "include",
-        //   }),
       },
       {
         path: "/recommendations-for-me",
