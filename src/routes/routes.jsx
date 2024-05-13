@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/query-details/:id",
-        element: <QueryDetails />,
+        element: (
+          <PrivateRoute>
+            <QueryDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-recommendations",

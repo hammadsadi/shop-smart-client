@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toastAlert } from "../utils/toastAlert";
 import { useEffect, useState } from "react";
@@ -22,34 +22,34 @@ const Navbar = () => {
   let navItem = (
     <>
       <li>
-        <Link to="/" className="text-base font-medium">
+        <NavLink to="/" className="text-base font-medium">
           Home
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/queries" className="text-base font-medium">
+        <NavLink to="/queries" className="text-base font-medium">
           Queries
-        </Link>
+        </NavLink>
       </li>
       {user && (
         <>
           <li>
-            <Link
+            <NavLink
               to="/recommendations-for-me"
               className="text-base font-medium"
             >
               Recommendations For Me
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/my-queries" className="text-base font-medium">
+            <NavLink to="/my-queries" className="text-base font-medium">
               My Queries
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/my-recommendations" className="text-base font-medium">
+            <NavLink to="/my-recommendations" className="text-base font-medium">
               My recommendations
-            </Link>
+            </NavLink>
           </li>
         </>
       )}

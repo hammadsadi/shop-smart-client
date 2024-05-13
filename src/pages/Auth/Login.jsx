@@ -1,9 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toastAlert } from "../../utils/toastAlert";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -25,7 +27,7 @@ const Login = () => {
         email: result?.user?.email,
       });
       toastAlert("Login Success", "success");
-      navigate("/");
+      location.state ? navigate(location.state) : navigate("/");
       e.target.reset();
     } catch (error) {
       toastAlert("Invalid Email and Password", "error");
@@ -36,11 +38,13 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithGoogle();
-      const { data } = await axiosSecure.post("/jwt", {
+      await axiosSecure.post("/jwt", {
         email: result?.user?.email,
       });
-      toastAlert("Login Success", "success");
-      navigate("/");
+      if (result.user) {
+        toastAlert("Login Success", "success");
+        location.state ? navigate(location.state) : navigate("/");
+      }
     } catch (error) {
       toastAlert(error.message, "error");
     }

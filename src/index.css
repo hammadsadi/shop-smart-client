@@ -11,6 +11,11 @@
 .swiper-button-next {
   color: #8364e2 !important;
 }
+.menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
+.menu li > details > summary:active {
+  background-color: #8364e2 !important;
+}
 .swal2-cancel,
 .swal2-cancel:hover {
   background-color: red;
