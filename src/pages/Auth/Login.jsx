@@ -19,25 +19,23 @@ const Login = () => {
       return toastAlert("All Fields Are Required", "error");
     }
     // Login User
-    signIn(email, password)
-      .then(() => {
-        toastAlert("Login Success", "success");
-        navigate("/");
-      })
-      .catch(() => {
-        return toastAlert("Invalid Email and Password", "error");
+    try {
+      const result = await signIn(email, password);
+      const { data } = await axiosSecure.post("/jwt", {
+        email: result?.user?.email,
       });
-
-    console.log({ email, password });
-    e.target.reset();
+      toastAlert("Login Success", "success");
+      navigate("/");
+      e.target.reset();
+    } catch (error) {
+      toastAlert("Invalid Email and Password", "error");
+    }
   };
 
   // Handle Login With Google
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithGoogle();
-
-      console.log(result.user);
       const { data } = await axiosSecure.post("/jwt", {
         email: result?.user?.email,
       });

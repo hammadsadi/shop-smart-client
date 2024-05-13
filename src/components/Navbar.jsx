@@ -2,19 +2,21 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toastAlert } from "../utils/toastAlert";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState("light");
+  const axiosSecure = useAxiosSecure();
   // Handle Logout
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        toastAlert("Logout Success", "success");
-      })
-      .catch((err) => {
-        toastAlert(err.message, "error");
-      });
+  const handleLogout = async () => {
+    try {
+      const result = await logOut();
+      const { data } = await axiosSecure.get("/cookie-clear");
+      toastAlert("Logout Success", "success");
+    } catch (error) {
+      toastAlert(error.message, "error");
+    }
   };
 
   let navItem = (
