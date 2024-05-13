@@ -3,9 +3,10 @@ import SectionTitle from "../../components/SectionTitle";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import swal from "sweetalert";
+import Loader from "../../components/Loader/Loader";
 const MyRecommendations = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [recommendations, setRecommendations] = useState([]);
   // Get Recommendation
   useEffect(() => {
@@ -43,6 +44,7 @@ const MyRecommendations = () => {
       }
     });
   };
+  if (loading) return <Loader />;
   return (
     <div>
       <section className="dark:bg-gray-900">

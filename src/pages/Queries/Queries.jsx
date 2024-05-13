@@ -2,9 +2,12 @@ import QueriesCard from "../../components/QueriesCard";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import Loader from "../../components/Loader/Loader";
 const Queries = () => {
   // const loadedQueries = useLoaderData();
   const [loadedQueries, setLoadedQueries] = useState([]);
+  const { loading } = useAuth();
   const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure();
   const [layout, setLayout] = useState(null);
@@ -30,6 +33,7 @@ const Queries = () => {
   const handleChangeLayout = (e) => {
     setLayout(parseInt(e.target.value));
   };
+  if (loading) return <Loader />;
   return (
     <div>
       <section className=" dark:bg-gray-900">

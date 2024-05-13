@@ -6,11 +6,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import Loader from "../../components/Loader/Loader";
 
 const MyQueries = () => {
   const [myQueries, setQueries] = useState([]);
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   // Get User Queries
   useEffect(() => {
@@ -43,6 +44,7 @@ const MyQueries = () => {
       }
     });
   };
+  if (loading) return <Loader />;
   return (
     <div>
       <section>

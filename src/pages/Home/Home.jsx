@@ -12,10 +12,13 @@ import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
 import QueriesCard from "../../components/QueriesCard";
 import { useLoaderData } from "react-router-dom";
-import CountInfo from "../../components/CountInfo";
+import useAuth from "../../hooks/useAuth";
+import Loader from "../../components/Loader/Loader";
+import TrandingQueries from "../../components/TrandingQueries";
 
 const Home = () => {
   const loadedQueries = useLoaderData();
+  const { loading } = useAuth();
 
   const bannerInfo = [
     {
@@ -34,6 +37,9 @@ const Home = () => {
       image: "https://i.ibb.co/WvDBv8N/iceream.jpg",
     },
   ];
+
+  if (loading) return <Loader />;
+
   return (
     <div>
       {/* Hero Section */}
@@ -69,7 +75,7 @@ const Home = () => {
           <div>
             <SectionTitle
               title={"Recent Queries"}
-              subtitle={"You See The Recent Added Queries Here."}
+              subtitle={"You will see here the Recent Added Queries."}
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,10 +85,21 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Count Up */}
-      <section className="dark:bg-gray-900">
-        <div className="pb-10 md:pb-20">
-          <CountInfo />
+      {/* Trending Queries */}
+      <section className="dark:bg-gray-900 ">
+        <div className="container pb-10 md:pb-20 ">
+          <div>
+            <SectionTitle
+              title={"Trending Queries"}
+              subtitle={"You will see here the Trending Queries."}
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <TrandingQueries />
+            <TrandingQueries />
+            <TrandingQueries />
+            <TrandingQueries />
+          </div>
         </div>
       </section>
     </div>

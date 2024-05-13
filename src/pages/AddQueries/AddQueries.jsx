@@ -1,9 +1,10 @@
+import Loader from "../../components/Loader/Loader";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toastAlert } from "../../utils/toastAlert";
 
 const AddQueries = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   // handleCreateQuery
   const handleCreateQuery = async (e) => {
@@ -51,6 +52,8 @@ const AddQueries = () => {
       return toastAlert(error.message, "success");
     }
   };
+
+  if (loading) return <Loader />;
   return (
     <section className="dark:bg-gray-900">
       <div className="flex justify-center items-center w-full py-5">
