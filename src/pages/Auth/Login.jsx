@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { toastAlert } from "../../utils/toastAlert";
 import useAuth from "../../hooks/useAuth";
-
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   // Handle User Create
   const handleUserCreate = async (e) => {
     e.preventDefault();
@@ -31,15 +33,19 @@ const Login = () => {
   };
 
   // Handle Login With Google
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then(() => {
-        toastAlert("Login Success", "success");
-        navigate("/");
-      })
-      .catch((err) => {
-        return toastAlert(err.message, "error");
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithGoogle();
+
+      console.log(result.user);
+      const { data } = await axiosSecure.post("/jwt", {
+        email: result?.user?.email,
       });
+      toastAlert("Login Success", "success");
+      navigate("/");
+    } catch (error) {
+      toastAlert(error.message, "error");
+    }
   };
   return (
     <div className="flex justify-center items-center w-full h-screen">
