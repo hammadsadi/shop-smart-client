@@ -54,7 +54,6 @@ const Home = () => {
     };
     getAllQueries();
   }, []);
-  console.log(trendingData);
 
   if (loading) return <Loader />;
 

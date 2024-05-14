@@ -6,7 +6,6 @@ import { Fade } from "react-awesome-reveal";
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   // Handle User Create

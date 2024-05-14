@@ -12,7 +12,9 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const result = await logOut();
-      const { data } = await axiosSecure.get("/cookie-clear");
+      console.log(result);
+      const { data } = await axiosSecure.post("/cookie-clear");
+      console.log(data);
       toastAlert("Logout Success", "success");
     } catch (error) {
       toastAlert(error.message, "error");
@@ -48,7 +50,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink to="/my-recommendations" className="text-base font-medium">
-              My recommendations
+              My Recommendations
             </NavLink>
           </li>
         </>
