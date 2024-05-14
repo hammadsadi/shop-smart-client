@@ -8,16 +8,21 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Autoplay, EffectFade, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "../../components/SectionTitle";
 import QueriesCard from "../../components/QueriesCard";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/Loader/Loader";
 import TrandingQueries from "../../components/TrandingQueries";
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import TinyBanner from "../../components/TinyBanner";
 
 const Home = () => {
   const loadedQueries = useLoaderData();
+  const axiosSecure = useAxiosSecure();
+  const [trendingData, setTrendingData] = useState([]);
   const { loading } = useAuth();
 
   const bannerInfo = [
@@ -38,6 +43,18 @@ const Home = () => {
     },
   ];
 
+  // Get Queries
+  useEffect(() => {
+    const getAllQueries = async () => {
+      const { data } = await axiosSecure.get(
+        `${import.meta.env.VITE_API_BASE_URL}/trending-queries`
+      );
+      setTrendingData(data);
+    };
+    getAllQueries();
+  }, []);
+  console.log(trendingData);
+
   if (loading) return <Loader />;
 
   return (
@@ -48,7 +65,6 @@ const Home = () => {
           spaceBetween={30}
           loop={true}
           centeredSlides={true}
-          effect={"fade"}
           autoplay={{
             delay: 1500,
             disableOnInteraction: false,
@@ -57,7 +73,7 @@ const Home = () => {
             clickable: true,
           }}
           navigation={true}
-          modules={[Autoplay, EffectFade, Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
           {bannerInfo.map((bn) => (
@@ -85,6 +101,13 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Tiny Banner */}
+      <section className=" dark:bg-gray-900">
+        <div className="container mx-auto md:px-0 px-4 pb-10 md:pb-20">
+          <TinyBanner />
+        </div>
+      </section>
       {/* Trending Queries */}
       <section className="dark:bg-gray-900 ">
         <div className="container pb-10 md:pb-20 ">
@@ -95,10 +118,9 @@ const Home = () => {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <TrandingQueries />
-            <TrandingQueries />
-            <TrandingQueries />
-            <TrandingQueries />
+            {trendingData?.slice(0, 6).map((tran) => (
+              <TrandingQueries key={tran._id} trend={tran} />
+            ))}
           </div>
         </div>
       </section>
