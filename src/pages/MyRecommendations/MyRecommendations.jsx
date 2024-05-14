@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import swal from "sweetalert";
 import Loader from "../../components/Loader/Loader";
+import { Fade } from "react-awesome-reveal";
 const MyRecommendations = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useAuth();
@@ -52,68 +53,70 @@ const MyRecommendations = () => {
           <div>
             <SectionTitle title={"My Recommendation"} />
           </div>
-          <div className="overflow-x-auto">
-            <table className="table dark:text-white">
-              {/* head */}
-              <thead>
-                <tr className="dark:text-white">
-                  <th>
-                    <label>
-                      <input
-                        type="checkbox"
-                        className="checkbox dark:text-white"
-                      />
-                    </label>
-                  </th>
-                  <th>Photo & Title</th>
-                  <th>Reason</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* row 1 */}
-                {recommendations?.map((rec) => (
-                  <tr key={rec._id}>
+          <Fade>
+            <div className="overflow-x-auto">
+              <table className="table dark:text-white">
+                {/* head */}
+                <thead>
+                  <tr className="dark:text-white">
                     <th>
                       <label>
-                        <input type="checkbox" className="checkbox" />
+                        <input
+                          type="checkbox"
+                          className="checkbox dark:text-white"
+                        />
                       </label>
                     </th>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img
-                              src={rec?.recommendedProductImage}
-                              alt="Avatar Tailwind CSS Component"
-                            />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">
-                            {rec?.recommendationTitle.slice(0, 20)}...
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{rec?.recommendationReason.slice(0, 20)}...</td>
-
-                    <th>
-                      <button
-                        className="btn btn-ghost btn-xs bg-red-700 text-white hover:bg-gray-800"
-                        onClick={() =>
-                          handleDeleteRecommendation(rec._id, rec.queryId)
-                        }
-                      >
-                        Delete
-                      </button>
-                    </th>
+                    <th>Photo & Title</th>
+                    <th>Reason</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-              {/* foot */}
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {/* row 1 */}
+                  {recommendations?.map((rec) => (
+                    <tr key={rec._id}>
+                      <th>
+                        <label>
+                          <input type="checkbox" className="checkbox" />
+                        </label>
+                      </th>
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={rec?.recommendedProductImage}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="font-bold">
+                              {rec?.recommendationTitle.slice(0, 20)}...
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{rec?.recommendationReason.slice(0, 20)}...</td>
+
+                      <th>
+                        <button
+                          className="btn btn-ghost btn-xs bg-red-700 text-white hover:bg-gray-800"
+                          onClick={() =>
+                            handleDeleteRecommendation(rec._id, rec.queryId)
+                          }
+                        >
+                          Delete
+                        </button>
+                      </th>
+                    </tr>
+                  ))}
+                </tbody>
+                {/* foot */}
+              </table>
+            </div>
+          </Fade>
         </div>
       </section>
     </div>

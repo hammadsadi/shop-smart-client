@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { toastAlert } from "../utils/toastAlert";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-
+import logo from "../assets/images/AltProdGuide.png";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState("light");
@@ -97,7 +97,11 @@ const Navbar = () => {
               {navItem}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">SmartShop</a>
+
+          <Link to="/" className="btn btn-ghost text-xl">
+            <img src={logo} alt="" className="w-12" />
+            <span>AltProdGuide</span>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItem}</ul>

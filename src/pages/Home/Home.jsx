@@ -18,7 +18,8 @@ import TrandingQueries from "../../components/TrandingQueries";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import TinyBanner from "../../components/TinyBanner";
-
+import NewsLater from "../../components/NewsLater";
+import { Fade } from "react-awesome-reveal";
 const Home = () => {
   const loadedQueries = useLoaderData();
   const axiosSecure = useAxiosSecure();
@@ -122,6 +123,22 @@ const Home = () => {
               <TrandingQueries key={tran._id} trend={tran} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Subscribe News Later */}
+      <section className="dark:bg-gray-900 pb-10 md:pb-20">
+        <div className="container mx-auto md:px-0 px-4 py-10 md:py-20 bg-color-secondary dark:bg-gray-800">
+          <Fade>
+            <div className="space-y-2 max-w-md mx-auto text-center mb-4 md:mb-5 ">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-white dark:text-white">
+                Newsletter
+              </h2>
+              <p className="text-base text-white">Stay Updated</p>
+            </div>
+          </Fade>
+
+          <NewsLater />
         </div>
       </section>
     </div>

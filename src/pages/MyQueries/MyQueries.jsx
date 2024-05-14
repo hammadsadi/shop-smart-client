@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import Loader from "../../components/Loader/Loader";
-
+import { Fade } from "react-awesome-reveal";
 const MyQueries = () => {
   const [myQueries, setQueries] = useState([]);
   const axiosSecure = useAxiosSecure();
@@ -67,14 +67,16 @@ const MyQueries = () => {
             </div>
           ) : (
             <div className="text-center">
-              <h2 className="md:text-2xl text-lg font-medium dark:text-white mb-3">
-                Query Not Found
-              </h2>
-              <Link to="/add-query">
-                <button className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold text-white">
-                  Add Query
-                </button>
-              </Link>
+              <Fade>
+                <h2 className="md:text-2xl text-lg font-medium dark:text-white mb-3">
+                  Query Not Found
+                </h2>
+                <Link to="/add-query">
+                  <button className="bg-color-primary py-2 px-8 rounded-md text-base md:text-lg font-semibold text-white">
+                    Add Query
+                  </button>
+                </Link>
+              </Fade>
             </div>
           )}
         </div>

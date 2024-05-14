@@ -1,4 +1,4 @@
-# SmartShop
+# AltProdGuide
 
 ## [ Live Site URL](https://smart-shop-ca369.web.app/)
 
