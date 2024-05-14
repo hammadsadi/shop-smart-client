@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/Loader/Loader";
+import SectionTitle from "../../components/SectionTitle";
 const Queries = () => {
   // const loadedQueries = useLoaderData();
   const [loadedQueries, setLoadedQueries] = useState([]);
@@ -38,6 +39,9 @@ const Queries = () => {
     <div>
       <section className=" dark:bg-gray-900">
         <div className="container mx-auto md:px-0 px-4 py-10 md:py-20">
+          <div>
+            <SectionTitle title={"All Queries"} />
+          </div>
           <div className="flex items-center py-5">
             <div className="  max-w-md mx-auto gap-1">
               <form onSubmit={handleSearch}>
