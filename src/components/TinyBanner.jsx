@@ -6,7 +6,7 @@ const TinyBanner = () => {
       <div className="p-6 py-12 bg-color-secondary dark:bg-gray-800 dark:text-gray-50">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-between">
-            <h2 className="text-center text-6xl tracking-tighter font-bold text-white">
+            <h2 className="text-center text-3xl md:text-6xl tracking-tighter font-bold text-white">
               Explore &nbsp;
               <br className="sm:hidden" />
               Good Product
