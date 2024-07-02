@@ -22,7 +22,7 @@ Click here for the Live Site: [https://smart-shop-ca369.web.app/](https://smart-
 - MongoDB
 - Firebase
 
-## Project Clone Step
+## Project Clone and Run Step
 
 1. At First Clone This Repo
 
