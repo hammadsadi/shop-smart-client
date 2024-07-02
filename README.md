@@ -1,22 +1,54 @@
-# AltProdGuide
+# Project Overview
+
+This is Alternative Product Information System Website. This Website users can Add/update/Delete his own Query about a product in The System.
+
+## Project Features
+
+- User Cannot add Query and Recommendation without Login
+- Popular Queries by Users Recommendations
+- Users can update/Delete his own Query
 
 ## [ Live Site URL](https://smart-shop-ca369.web.app/)
 
 Click here for the Live Site: [https://smart-shop-ca369.web.app/](https://smart-shop-ca369.web.app/)
 
-## Website Features
+## Usages Technologies
 
-- Register User Using Email and Password
-- Login User Using Email and Password
-- Direct Sign In User Through Google Account
-- Protected Route
-- User Logout
-- Add Query
-- Delete Query
-- Update Query
-- Fully Responsive
-- Recommendation / Comment System
+- React Js
+- Tailwind CSS
+- Daisy UI
+- Node js
+- Express JS
+- MongoDB
+- Firebase
 
-# Category's name
+## Project Clone Step
 
-## Alternative Product Information System.
+1. At First Clone This Repo and Open This Project on Your Favourite Code Editor and Run This Command on the Vs Code terminal
+
+```js
+//comment following commands
+npm install
+```
+
+2. Setup env Variable Firebase Auth
+
+```js
+//comment following commands
+VITE_apiKey;
+VITE_authDomain;
+VITE_projectId;
+VITE_storageBucket;
+VITE_messagingSenderId;
+VITE_appId;
+VITE_API_BASE_URL;
+```
+
+Api Base URL : [https://api-nu-jade.vercel.app](https://api-nu-jade.vercel.app)
+
+1. Run This Project following on this command
+
+```js
+//comment following commands
+npm run dev
+```
