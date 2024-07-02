@@ -24,14 +24,18 @@ Click here for the Live Site: [https://smart-shop-ca369.web.app/](https://smart-
 
 ## Project Clone Step
 
-1. At First Clone This Repo and Open This Project on Your Favourite Code Editor and Run This Command on the Vs Code terminal
+1. At First Clone This Repo
+
+ <img src="https://i.postimg.cc/C1vK1D4H/shopcli1.png" alt="" />
+
+2. Open This Project on Your Favourite Code Editor and Run This Command on the Vs Code terminal
 
 ```js
 //comment following commands
 npm install
 ```
 
-2. Setup env Variable Firebase Auth
+3. Setup env Variable Firebase Auth
 
 ```js
 //comment following commands
@@ -46,7 +50,7 @@ VITE_API_BASE_URL;
 
 Api Base URL : [https://api-nu-jade.vercel.app](https://api-nu-jade.vercel.app)
 
-1. Run This Project following on this command
+4. Run This Project following on this command
 
 ```js
 //comment following commands
